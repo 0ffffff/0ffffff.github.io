@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Experience | William Li" description="Experience and past work.">
+  <section>
+    <h1>Experience</h1>
+  </section>
+
+  <section class="compact">
+    <article>
+      <p><b>Machine Learning Engineer (Contract)</b></p>
+      <p class="muted">Applied Materials • February 2026 - Present</p>
+      <p>
+        I worked on developing a digital twin, using PCMCI+, J-PCMCI+, PySR, and other tools, with the goal of predicting semiconductor defects in manufacturing processes before they occur in real life. I architected a data pipeline with causal inference, symbolic regression, and visualizations for high-dimensional time-series data, and then built an web application using Docker, React, and FastAPI to provide an end-to-end interface for the pipeline as well as interactive graphs.
+      </p>
+    </article>
+
+    <article>
+      <p><b>Software Engineer Intern</b></p>
+      <p class="muted">Liminal Machines • January 2027 - Present</p>
+      <p>
+        I worked on an AI-native collaboration tool for small agile teams looking to visualize what a product does, rather than how it looks. To accomplish this, I helped build a real-time collaborative board platform using React, FastAPI, PostgreSQL, and tools like PartyKit, Yjs, and React Flow for various features. The agentic system behind the chat and autonomous board interactions was powered by Gemini Enterprise Agent Platform, and I worked on testing and CI/CD pipelines with GitHub Actions, Playwright, Vitest, and others.
+      </p>
+    </article>
+
+    <article>
+      <p><b>Strategy Consultant</b></p>
+      <p class="muted">ZymoChem • September 2025 - December 2025</p>
+      <p>
+        I was part of a team working with ZymoChem, a biotech startup based in the San Francisco Bay Area. I analyzed trade data spanning half a decade and $5 billion in value, mapped supply/demand flows across the globe, and scraped data from trade databases like UN Comtrade and ImportYeti to create targetted outreach campaigns.
+      </p>
+    </article>
+  </section>
+
+  <hr />
+  <section>
+    <br>
+    <p>
+      "One always finds one's burden again."
+    </p>
+  </section>
+</BaseLayout>
