@@ -31,14 +31,6 @@ body {
   margin-bottom: 3rem;
 }
 
-.site-title {
-  display: inline-block;
-  margin-bottom: 0.75rem;
-  font-weight: 600;
-  text-decoration: none;
-  color: inherit;
-}
-
 .nav-list {
   display: flex;
   justify-content: center;
@@ -80,6 +72,45 @@ article {
 
 .compact li + li {
   margin-top: 0.15rem;
+}
+
+.compact .job-card > summary {
+  cursor: pointer;
+  list-style: none;
+  margin-bottom: 0.2rem;
+}
+
+.compact .job-card[open] > summary {
+  margin-bottom: 0.35rem;
+}
+
+.compact .job-card > summary::-webkit-details-marker {
+  display: none;
+}
+
+.compact .job-card > summary::marker {
+  content: "";
+}
+
+.compact .job-card > summary > p:first-child > b {
+  display: flex;
+  align-items: baseline;
+}
+
+.compact .job-card > summary > p:first-child > b::after {
+  content: " Expand";
+  color: #555;
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin-left: auto;
+}
+
+.compact .job-card[open] > summary > p:first-child > b::after {
+  content: " Collapse";
+}
+
+.compact .job-card > summary > p:last-child {
+  margin-bottom: 0;
 }
 
 
