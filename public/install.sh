@@ -4,13 +4,11 @@
 # Usage (from a clone):
 #   ./install.sh
 #
-# Usage (pipe install — set the git URL of this repository):
-#   curl -fsSL https://raw.githubusercontent.com/0ffffff/employment-tracker/main/install.sh | bash
-#   # or:
-#   TRACK_INSTALL_REPO=https://github.com/0ffffff/employment-tracker.git bash -c "$(curl -fsSL https://raw.githubusercontent.com/0ffffff/employment-tracker/main/install.sh)"
+# Usage (pipe install):
+#   curl -fsSL https://0ffffff.github.io/install.sh | bash
 #
 # Environment:
-#   TRACK_INSTALL_REPO   Git URL to clone when not run from a checkout (required for pipe install)
+#   TRACK_INSTALL_REPO   Git URL to clone for pipe install (default: 0ffffff/employment-tracker)
 #   TRACK_INSTALL_BRANCH Branch to clone (default: main)
 #   TRACK_INSTALL_SKIP_COMPLETION  Set to 1 to skip shell rc changes
 
@@ -20,6 +18,8 @@ TOOL_NAME="employment-tracker"
 COMPLETION_BEGIN="# >>> track shell completion (install.sh) >>>"
 COMPLETION_END="# <<< track shell completion (install.sh) <<<"
 INSTALL_BRANCH="${TRACK_INSTALL_BRANCH:-main}"
+DEFAULT_INSTALL_REPO="https://github.com/0ffffff/employment-tracker.git"
+TRACK_INSTALL_REPO="https://github.com/0ffffff/employment-tracker.git"
 
 log() { printf '%s\n' "$*"; }
 warn() { printf 'warning: %s\n' "$*" >&2; }
@@ -142,7 +142,6 @@ main() {
     source_dir="$repo_root"
     log "Using checkout at ${source_dir}"
   else
-    : "${TRACK_INSTALL_REPO:?Set TRACK_INSTALL_REPO to this repo git URL for pipe install, or run install.sh from a clone}"
     WORK_DIR="$(mktemp -d 2>/dev/null || mktemp -d -t track-install)"
     trap cleanup EXIT
     log "Cloning ${TRACK_INSTALL_REPO} (branch ${INSTALL_BRANCH})"
