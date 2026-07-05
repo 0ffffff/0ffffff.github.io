@@ -1,4 +1,7 @@
 :root {
+  --bg: #fff;
+  --text: #111;
+  --muted: #555;
   color-scheme: light;
   font-family:
     times new roman,
@@ -7,14 +10,21 @@
   font-weight: 400;
 }
 
+[data-theme="dark"] {
+  --bg: #111;
+  --text: #e8e8e8;
+  --muted: #999;
+  color-scheme: dark;
+}
+
 * {
   box-sizing: border-box;
 }
 
 html {
   margin: 0;
-  background: #fff;
-  color: #111;
+  background: var(--bg);
+  color: var(--text);
 }
 
 body {
@@ -99,7 +109,7 @@ article {
 
 .compact .job-card > summary > p:first-child > b::after {
   content: " Expand";
-  color: #555;
+  color: var(--muted);
   font-size: 0.9rem;
   font-weight: 400;
   margin-left: auto;
@@ -121,5 +131,24 @@ a {
 
 time,
 .muted {
-  color: #555;
+  color: var(--muted);
+}
+
+.theme-toggle {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
+.theme-toggle:hover {
+  color: var(--text);
 }

@@ -13,7 +13,17 @@ const { title, description = 'Personal website' } = Astro.props;
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <script is:inline>
+      (function () {
+        const stored = localStorage.getItem('theme');
+        const dark = stored
+          ? stored === 'dark'
+          : matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      })();
+    </script>
     <meta name="viewport" content="width=device-width" />
+    <meta name="color-scheme" content="light dark" />
     <link rel="icon" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
@@ -34,5 +44,39 @@ const { title, description = 'Personal website' } = Astro.props;
       </header>
       <slot />
     </main>
+    <button type="button" class="theme-toggle" aria-label="Toggle color theme">
+      dark
+    </button>
+    <script is:inline>
+      (function () {
+        const root = document.documentElement;
+        const button = document.querySelector('.theme-toggle');
+
+        function syncLabel() {
+          button.textContent = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        }
+
+        function setTheme(theme) {
+          root.dataset.theme = theme;
+          localStorage.setItem('theme', theme);
+          syncLabel();
+        }
+
+        syncLabel();
+
+        button.addEventListener('click', function () {
+          setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark');
+        });
+
+        if (!localStorage.getItem('theme')) {
+          matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+            if (!localStorage.getItem('theme')) {
+              root.dataset.theme = e.matches ? 'dark' : 'light';
+              syncLabel();
+            }
+          });
+        }
+      })();
+    </script>
   </body>
 </html>
